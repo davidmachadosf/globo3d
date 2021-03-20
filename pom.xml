@@ -8,11 +8,11 @@
 		<version>2.4.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.globo</groupId>
-	<artifactId>globo</artifactId>
+	<groupId>com.globo3d</groupId>
+	<artifactId>globo3d</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>globo</name>
+	<name>globo3d</name>
 	<description>Globo Planetário 3D</description>
 	<properties>
 		<java.version>1.8</java.version>
