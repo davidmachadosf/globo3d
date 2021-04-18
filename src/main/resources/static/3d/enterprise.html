@@ -14,21 +14,21 @@
 			document.body.appendChild(app.view);
 			
 			let img = new PIXI.Sprite.from("enterprise.png");
-			img.width = 500;
-			img.height = 390;
+			img.width = 1000;
+			img.height = 780;
 			app.stage.addChild(img);
 			
 			depthMap = new PIXI.Sprite.from("enterprise_map.png");
-			depthMap.width = 500;
-			depthMap.height = 390;
+			depthMap.width = 1000;
+			depthMap.height = 780;
 			app.stage.addChild(depthMap);
 			
 			displacementFilter = new PIXI.filters.DisplacementFilter(depthMap);
 			app.stage.filters = [displacementFilter];
 			
 			window.onmousemove = function(e) {
-				displacementFilter.scale.x = (500/2 - e.clientX)/20;
-				displacementFilter.scale.y = (390/2 - e.clientY)/20;
+				displacementFilter.scale.x = (1000/2 - Math.max(e.clientX,1000))/20;
+				displacementFilter.scale.y = ( 780/2 - Math.max(e.clientY, 780))/20;
 			};
 		</script>
 	</boby>
