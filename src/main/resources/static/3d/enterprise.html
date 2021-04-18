@@ -27,8 +27,8 @@
 			app.stage.filters = [displacementFilter];
 			
 			window.onmousemove = function(e) {
-				displacementFilter.scale.x = (1000/2 - Math.max(e.clientX,500))/20;
-				displacementFilter.scale.y = ( 780/2 - Math.max(e.clientY,390))/20;
+				displacementFilter.scale.x = (500 - Math.min(e.clientX,1000))/20;
+				displacementFilter.scale.y = (380 - Math.min(e.clientY, 780))/20;
 			};
 		</script>
 	</boby>
