@@ -1,0 +1,68 @@
+<html>
+	
+	<head>
+		<meta charset="UTF-8" />
+		<title>Entreprise 3D</title>
+		
+		<script src="../js/pixi.min.js"></script>		
+		
+	</head>
+
+	<body>		
+	
+	    <select onChange="loadImage(this.options[this.selectedIndex].value)">
+			<option value="enterprise">enterprise</option>
+			<option value="batch_math1">batch_math1</option>
+			<option value="billiards">billiards</option>
+			<option value="chairs">chairs</option>
+			<option value="chess">chess</option>
+			<option value="cornbox">cornbox</option>
+			<option value="diet_coke">diet_coke</option>
+			<option value="diet_pepsi">diet_pepsi</option>
+			<option value="fence">fence</option>
+			<option value="hair">hair</option>
+			<option value="math1">math1</option>
+			<option value="math2">math2</option>
+			<option value="math3">math3</option>
+			<option value="math4">math4</option>
+			<option value="math5">math5</option>
+			<option value="teacup">teacup</option>
+		</select>
+		<br/>
+		
+		<script>	
+			let W = 720*1.2;
+			let H = 540*1.2;
+		
+			let app = new PIXI.Application({width: W, height: H});
+			document.body.appendChild(app.view);
+			
+			function loadImage(filename) {
+			
+				app.stage.removeChildren ();
+				
+				let img = new PIXI.Sprite.from("dofpro_"+filename+"RGB.jpg");
+				img.width = W;
+				img.height = H;
+				app.stage.addChild(img);
+				
+				let depthMap = new PIXI.Sprite.from("dofpro_"+filename+"DM.jpg");
+				depthMap.width = W;
+				depthMap.height = H;
+				app.stage.addChild(depthMap);
+				
+				displacementFilter = new PIXI.filters.DisplacementFilter(depthMap);
+				app.stage.filters = [displacementFilter];
+			};
+			
+			window.onmousemove = function(e) {
+				displacementFilter.scale.x = (W/2 - Math.min(e.clientX,W))/15;
+				displacementFilter.scale.y = (H/2 - Math.min(e.clientY, H))/15;
+			}		
+		</script>		
+		 
+        <script>loadImage("enterprise");</script>		
+		
+	</body>
+	
+</html>
