@@ -4,7 +4,8 @@
 		<meta charset="UTF-8" />
 		<title>3D Examples</title>
 		
-		<script src="../js/pixi.min.js"></script>		
+		<script src="../js/pixi.min.js"></script>
+		<script src="../js/fulltilt.min.js"></script>		
 		
 	</head>
 
@@ -31,6 +32,7 @@
 		<br/>
 		
 		<script>	
+			
 			let W = 720*1.2;
 			let H = 540*1.2;
 		
@@ -55,10 +57,22 @@
 				app.stage.filters = [displacementFilter];
 			};
 			
+			// detecta posição do cursor em relação ao centro da imagem (paralaxe para o desktop)
 			window.onmousemove = function(e) {
 				displacementFilter.scale.x = (W/2 - Math.min(e.clientX,W))/15;
 				displacementFilter.scale.y = (H/2 - Math.min(e.clientY, H))/15;
-			}		
+			}
+			
+			// detecta inclinacao do celular em relação 'a gravidade (paralaxe para mobile)
+			let deviceMotion = FULLTILT.getDeviceMotion();
+			deviceMotion.then(function(motionData) {
+				motionData.listen(function() {
+				    let accG = rawEvent.accelerationIncludingGravity || {};
+				    displacementFilter.scale.x = Math.min(accG.x, 4.0)*4;
+				    displacementFilter.scale.y = Math.min(accG.y, 4.0)*4;
+				}
+			}
+				
 		</script>		
 		 
         <script>loadImage("enterprise");</script>		
