@@ -112,8 +112,16 @@
 					var rawEvent = motionData.getLastRawEventData();
 				    var accG = rawEvent.accelerationIncludingGravity || {};
 				    
-				    displacementFilter.scale.x = - accG.x * 20;
-				    displacementFilter.scale.y = - accG.y * 20;
+				    var dx = accG.x;
+				    if(dx<-4) dx=-4;
+				    if(dx>+4) dx=+4;
+				    
+				    var dy = accG.y;
+				    if(dx<-4) dy=-4;
+				    if(dx>+4) dy=+4;
+				    
+				    displacementFilter.scale.x = - dx * 10;
+				    displacementFilter.scale.y = - dy * 10;
 				    
 				    accGX.textContent = printDataValue(accG.x);
 					accGY.textContent = printDataValue(accG.y);
