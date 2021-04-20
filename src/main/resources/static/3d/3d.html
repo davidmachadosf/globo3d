@@ -30,7 +30,7 @@
 			<option value="teacup">teacup</option>
 		</select>
 		
-		<!-- <table>
+		<table>
 			<thead>
 				<tr>
 					<th></th>
@@ -47,7 +47,7 @@
 					<td id="accGZ">-</td>
 				</tr>
 			</tbody>
-		</table>  -->
+		</table>
 		
 		<br/>
 		
@@ -77,6 +77,22 @@
 				app.stage.filters = [displacementFilter];
 			};
 			
+			
+			function printDataValue(input) {
+				if( input === undefined )
+					return "undefined";
+				if( input === null )
+					return "null";
+				if( input === true )
+					return "true";
+				if( input === false )
+					return "false";
+				if( Object.prototype.toString.call(input) === "[object Number]" )
+					return Math.round((input + 0.00001) * 100) / 100; // return to 2 decimal places
+			
+				return (input + ""); // force stringify
+			}
+						
 			// detecta posição do cursor em relação ao centro da imagem (paralaxe para o desktop)
 			window.onmousemove = function(e) {
 				displacementFilter.scale.x = (W/2 - Math.min(e.clientX,W))/15;
@@ -84,9 +100,9 @@
 			}
 			
 			
-			//var accGX = document.getElementById("accGX");
-			//var accGY = document.getElementById("accGY");
-			//var accGZ = document.getElementById("accGZ");
+			var accGX = document.getElementById("accGX");
+			var accGY = document.getElementById("accGY");
+			var accGZ = document.getElementById("accGZ");
 			
 			// detecta inclinacao do celular em relação 'a gravidade (paralaxe para mobile)
 			var deviceMotion = FULLTILT.getDeviceMotion();
@@ -99,9 +115,9 @@
 				    displacementFilter.scale.x = - accG.x * 10;
 				    displacementFilter.scale.y = + accG.y * 10;
 				    
-				    //accGX.textContent = printDataValue(accG.x);
-					//accGY.textContent = printDataValue(accG.y);
-					//accGZ.textContent = printDataValue(accG.z);
+				    accGX.textContent = printDataValue(accG.x);
+					accGY.textContent = printDataValue(accG.y);
+					accGZ.textContent = printDataValue(accG.z);
 				});
 			});
 				
