@@ -92,6 +92,8 @@
 			var deviceMotion = FULLTILT.getDeviceMotion();
 			deviceMotion.then(function(motionData) {
 				motionData.listen(function() {
+				
+					var rawEvent = motionData.getLastRawEventData();
 				    var accG = rawEvent.accelerationIncludingGravity || {};
 				    
 				    displacementFilter.scale.x = accG.x * 4;
