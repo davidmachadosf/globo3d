@@ -29,6 +29,26 @@
 			<option value="math5">math5</option>
 			<option value="teacup">teacup</option>
 		</select>
+		
+		<table>
+			<thead>
+				<tr>
+					<th></th>
+					<th>.x</th>
+					<th>.y</th>
+					<th>.z</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>acceleration</th>
+					<td id="accGX">-</td>
+					<td id="accGY">-</td>
+					<td id="accGZ">-</td>
+				</tr>
+			</tbody>
+		</table>
+		
 		<br/>
 		
 		<script>	
@@ -63,13 +83,23 @@
 				displacementFilter.scale.y = (H/2 - Math.min(e.clientY, H))/15;
 			}
 			
+			
+			var accGX = document.getElementById("accGX");
+			var accGY = document.getElementById("accGY");
+			var accGZ = document.getElementById("accGZ");
+			
 			// detecta inclinacao do celular em relação 'a gravidade (paralaxe para mobile)
-			let deviceMotion = FULLTILT.getDeviceMotion();
+			var deviceMotion = FULLTILT.getDeviceMotion();
 			deviceMotion.then(function(motionData) {
 				motionData.listen(function() {
-				    let accG = rawEvent.accelerationIncludingGravity || {};
-				    displacementFilter.scale.x = Math.min(accG.x, 4.0)*4;
-				    displacementFilter.scale.y = Math.min(accG.y, 4.0)*4;
+				    var accG = rawEvent.accelerationIncludingGravity || {};
+				    
+				    displacementFilter.scale.x = accG.x * 4;
+				    displacementFilter.scale.y = accG.y * 4;
+				    
+				    accGX.textContent = printDataValue(accG.x);
+					accGY.textContent = printDataValue(accG.y);
+					accGZ.textContent = printDataValue(accG.z);
 				});
 			});
 				
