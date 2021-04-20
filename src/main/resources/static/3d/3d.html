@@ -12,6 +12,7 @@
 	<body>		
 	
 	    <select onChange="loadImage(this.options[this.selectedIndex].value)">
+			<option value="math5">math5</option>
 			<option value="enterprise">enterprise</option>
 			<option value="batch_math1">batch_math1</option>
 			<option value="billiards">billiards</option>
@@ -26,11 +27,10 @@
 			<option value="math2">math2</option>
 			<option value="math3">math3</option>
 			<option value="math4">math4</option>
-			<option value="math5">math5</option>
 			<option value="teacup">teacup</option>
 		</select>
 		
-		<table>
+		<!-- <table>
 			<thead>
 				<tr>
 					<th></th>
@@ -47,7 +47,7 @@
 					<td id="accGZ">-</td>
 				</tr>
 			</tbody>
-		</table>
+		</table> -->
 		
 		<br/>
 		
@@ -100,9 +100,9 @@
 			}
 			
 			
-			var accGX = document.getElementById("accGX");
-			var accGY = document.getElementById("accGY");
-			var accGZ = document.getElementById("accGZ");
+			//var accGX = document.getElementById("accGX");
+			//var accGY = document.getElementById("accGY");
+			//var accGZ = document.getElementById("accGZ");
 			
 			// detecta inclinacao do celular em relação 'a gravidade (paralaxe para mobile)
 			var deviceMotion = FULLTILT.getDeviceMotion();
@@ -123,9 +123,9 @@
 				    displacementFilter.scale.x = - dx * 10;
 				    displacementFilter.scale.y = - dy * 10;
 				    
-				    accGX.textContent = printDataValue(accG.x);
-					accGY.textContent = printDataValue(accG.y);
-					accGZ.textContent = printDataValue(accG.z);
+				    //accGX.textContent = printDataValue(accG.x);
+					//accGY.textContent = printDataValue(accG.y);
+					//accGZ.textContent = printDataValue(accG.z);
 				});
 			});
 				
